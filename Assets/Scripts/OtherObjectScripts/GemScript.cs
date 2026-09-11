@@ -5,15 +5,8 @@ using TMPro;
 
 public class GemScript : MonoBehaviour
 {
-    [SerializeField] private string colour;
-    [SerializeField] private Canvas mainUI;
+    private Canvas mainUI;
     private UIScript mainUIScript;
-
-    void Start() 
-    {
-        mainUIScript = mainUI.GetComponent<UIScript>();
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,8 +22,10 @@ public class GemScript : MonoBehaviour
         }
     }
 
+    //this is the Canvas UI that will be passed into the spawned in gem from the chest script   
     public void SetUpGem(Canvas _mainUI) 
     {
         mainUI = _mainUI;
+        mainUIScript = mainUI.GetComponent<UIScript>();
     }
 }

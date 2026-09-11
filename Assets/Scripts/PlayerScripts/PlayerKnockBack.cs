@@ -1,14 +1,14 @@
-using Pathfinding;
+    using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerKnockBack : MonoBehaviour
 {
-    [SerializeField] private Transform pTransform;
-    [SerializeField] private Rigidbody2D Rb;
-    [SerializeField] private PlayerMovement pMovement;
-    [SerializeField] private PlayerWeaponControlller pWeapon;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerWeaponControlller playerWeapon;
     private Animator playerAnim;
     private PlayerHealth playerHealth;
 
@@ -18,9 +18,10 @@ public class PlayerKnockBack : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
     }
 
+    //compute the direction of the knockback and prevent player from attacking and moving whilst stunned
     public void takeKnockBack(Transform eTransform, int enemyKnockBack)
     {
-        Vector2 hitDirection = (pTransform.position - eTransform.position).normalized;
+        Vector2 hitDirection = (playerTransform.position - eTransform.position).normalized;
 
         if (playerHealth.currentHealth > 0)
         {
@@ -28,14 +29,15 @@ public class PlayerKnockBack : MonoBehaviour
         }
 
         //disable playermovement and player attack
-        pMovement.enabled = false;
-        pWeapon.enabled = false;
+        playerMovement.enabled = false;
+        playerWeapon.enabled = false;
 
-        Rb.velocity = hitDirection * enemyKnockBack;
+        playerRb.velocity = hitDirection * enemyKnockBack;
 
         StartCoroutine(stunPlayer());
     }
 
+    //this will allow player to shoot and move after set time
     public IEnumerator stunPlayer()
     {
 
@@ -44,8 +46,8 @@ public class PlayerKnockBack : MonoBehaviour
         {
             playerAnim.SetBool("isHit", false);
         }
-        Rb.velocity = Vector2.zero;
-        pMovement.enabled = true;
-        pWeapon.enabled = true;
+        playerRb.velocity = Vector2.zero;
+        playerMovement.enabled = true;
+        playerWeapon.enabled = true;
     }
 }

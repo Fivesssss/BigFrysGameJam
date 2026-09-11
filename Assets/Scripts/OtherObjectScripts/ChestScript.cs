@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 
 public class ChestScript : MonoBehaviour
 {
-    private bool enterRegion = false;
+    private bool enterRegion = false; //player is within the trigger collider
 
     [SerializeField] private GameObject gem;
     [SerializeField] TextMeshProUGUI doNotHaveSilverKey;
@@ -15,6 +15,8 @@ public class ChestScript : MonoBehaviour
 
     private PlayerInventory inventory;
 
+    [SerializeField] private OtherObjectSFXScript otherObjectSFXScript;
+
     // Update is called once per frame
     void Update()
     {
@@ -22,11 +24,11 @@ public class ChestScript : MonoBehaviour
         {
             if (inventory.silverKeys >= 1 && Input.GetKeyDown(KeyCode.Return) && enterRegion)
             {
-                Debug.Log("enter Pressed");
                 GameObject spawnGem = Instantiate(gem, transform.position, transform.rotation);
                 GemScript gemScript  = spawnGem.GetComponent<GemScript>();
-                gemScript.SetUpGem(mainUI);
+                gemScript.SetUpGem(mainUI); //refer to the gemscript
                 inventory.subtractSilverKeys();
+                otherObjectSFXScript.playChestSFX();
                 Destroy(gameObject);
             }
             else if (inventory.silverKeys < 1 && Input.GetKeyDown(KeyCode.Return) && enterRegion)
@@ -37,6 +39,7 @@ public class ChestScript : MonoBehaviour
         }
     }
 
+    //this will enable the player to open the chest as is coded in the update function
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject target = collision.gameObject;

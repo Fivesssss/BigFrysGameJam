@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class DoorScript : MonoBehaviour
     private PlayerInventory inventory = null;
     [SerializeField] private TextMeshProUGUI notEnoughKeys;
     [SerializeField] private TextMeshProUGUI pressEnterToEscape;
+
+    [SerializeField] private OtherObjectSFXScript otherObjectSFXScript;
 
     //Update code later
     //Text mesh pro later
@@ -21,6 +24,8 @@ public class DoorScript : MonoBehaviour
             {
                 Debug.Log("You have escaped");
                 inventory.subtractGoldKeys();
+                otherObjectSFXScript.playDoorSFX();
+                SceneManager.LoadScene("MainMenu");
                 //Exit Scene play
             }
             else if (inventory.goldKeys < 1 && Input.GetKeyDown(KeyCode.Return) && enterDoorRegion)
@@ -31,6 +36,7 @@ public class DoorScript : MonoBehaviour
         }
     }
 
+    //let player interact with the door when entering the region
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -44,6 +50,7 @@ public class DoorScript : MonoBehaviour
         }
     }
 
+    //prevent player from interacting with the door once leaving the region
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -8,15 +8,11 @@ public class ProjectileLogic : MonoBehaviour
     [SerializeField] private int projectileKnockBack = 2;
     [SerializeField] private Transform projTransform;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
         void Update()
     {
+        //auto destroy the projectile after 3 seconds
         Destroy(gameObject, 3f);
     }
 
@@ -24,7 +20,6 @@ public class ProjectileLogic : MonoBehaviour
     {
         GameObject target = collision.gameObject;
         if (target.tag == "Enemy") {
-            Debug.Log("Hit");
             EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
             EnemyKnockBack enemyKnockBack = target.GetComponent<EnemyKnockBack>();
 

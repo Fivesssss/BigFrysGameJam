@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour
 {
     //Enemy Graphics control
     [SerializeField] private GameObject enemyGraphics;
-    private SpriteRenderer spriteRenderer;
     private Animator enemyAnim;
     [SerializeField ]private AIPath aiPath;
 
@@ -18,7 +17,6 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyRB = GetComponent<Rigidbody2D>();    
         enemyAnim = enemyGraphics.GetComponent<Animator>();
-        spriteRenderer = enemyGraphics.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,11 +38,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (aiPath.desiredVelocity.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1); //flip the enemy sprite left
         }
         else if (aiPath.desiredVelocity.x > 0) 
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1); //flip the enemy sprite right
         }
     }
 }

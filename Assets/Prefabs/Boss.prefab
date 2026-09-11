@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1580658015, guid: 1a8c67bf76d721b4ca73ed811a0ae6ad, type: 3}
+  m_Sprite: {fileID: 1111377323, guid: 49910f6ad8d200a4ea396b3a9760d449, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1729044739930423730}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24247075e8e3c964bae57c0a76b63512, type: 2}
+  m_Controller: {fileID: 9100000, guid: 69fdb0a8591b16740ba7c64d670723a5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -184,9 +184,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
-  m_Radius: 0.2796846
+  m_Radius: 2.2
 --- !u!114 &1736672551223238670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 32, y: 7, z: -0.06911083}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1423829461017148527}
@@ -344,11 +344,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 1729044739930423730}
   silverKey: {fileID: 0}
-  goldKey: {fileID: 0}
+  goldKey: {fileID: 3574047313699864554, guid: 1399ed2166decb6439d171c771244245, type: 3}
   isMedium: 0
-  isBoss: 0
+  isBoss: 1
   health: 10
+  enemyAttackCollider: {fileID: 997274566054899392}
   currentHealth: 0
+  enemySFXScript: {fileID: 0}
 --- !u!114 &5215748376324239812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,10 +363,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f123098b7f1a744a4bd7a1997e6676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eTransform: {fileID: 6185057657315713729}
+  enemyTransform: {fileID: 6185057657315713729}
   eRb: {fileID: 6544346066542760223}
-  enemyMoveController: {fileID: 6464645756010197517}
+  aiPath: {fileID: 6464645756010197517}
   enemyGraphics: {fileID: 1729044739930423730}
+  enemyAttackCollider: {fileID: 997274566054899392}
 --- !u!50 &6544346066542760223
 Rigidbody2D:
   serializedVersion: 4
@@ -424,9 +427,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
-  m_Radius: 0.21878743
+  m_Radius: 2
 --- !u!114 &9181458836217231281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +511,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.9692826
+  m_Radius: 12
 --- !u!114 &2683748081972619088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,3 +525,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAIPath: {fileID: 6464645756010197517}
+  isBoss: 1
+  bgmController: {fileID: 0}

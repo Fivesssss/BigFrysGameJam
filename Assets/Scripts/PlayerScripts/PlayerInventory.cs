@@ -1,5 +1,6 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -9,11 +10,15 @@ public class PlayerInventory : MonoBehaviour
     public int gems;
     public List<GameObject> gemCollection;
 
+    [SerializeField] private OtherObjectSFXScript otherObjectSFXScript;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private TextMeshProUGUI bossSpawnText;
+
     // Start is called before the first frame update
     void Start()
     {
         gemCollection = new List<GameObject>();
-        silverKeys = 3;
+        silverKeys = 0;
         goldKeys = 0;
         gems = 0;
     }
@@ -21,6 +26,7 @@ public class PlayerInventory : MonoBehaviour
     public void addSilverKeys() 
     {
         silverKeys++;
+        otherObjectSFXScript.playSilverKeySFX();
     }
     public void subtractSilverKeys()
     {
@@ -30,6 +36,7 @@ public class PlayerInventory : MonoBehaviour
     public void addGoldKeys()
     {
         goldKeys++;
+        otherObjectSFXScript.playGoldKeySFX();
     }
     public void subtractGoldKeys()
     {
@@ -39,5 +46,19 @@ public class PlayerInventory : MonoBehaviour
     public void addGems()
     {
         gems++;
+        otherObjectSFXScript.playGemSFX();
+
+        //Boss spawning code block
+        if (gems == 3)
+        {
+            boss.SetActive(true);
+            bossSpawnText.gameObject.SetActive(true);
+            StartCoroutine(bossSpawnTextDespawn());
+        }
+    }
+    private IEnumerator bossSpawnTextDespawn()
+    {
+        yield return new WaitForSeconds(3);
+        bossSpawnText.gameObject.SetActive(false);
     }
 }

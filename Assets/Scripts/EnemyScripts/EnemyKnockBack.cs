@@ -6,14 +6,15 @@ using Pathfinding;
 
 public class EnemyKnockBack : MonoBehaviour
 {
-    [SerializeField] private Transform eTransform;
+    [SerializeField] private Transform enemyTransform; //the transform of the enemy
     [SerializeField] private Rigidbody2D eRb;
-    [SerializeField] private AIPath enemyMoveController;
+    [SerializeField] private AIPath aiPath;
 
-    //Enemy Graphics control
     [SerializeField] private GameObject enemyGraphics;
-    private Animator enemyAnim;
 
+    [SerializeField] private CircleCollider2D enemyAttackCollider;
+    private Animator enemyAnim;
+        
     private EnemyHealth enemyHealth;
 
     void Start()
@@ -22,10 +23,13 @@ public class EnemyKnockBack : MonoBehaviour
         enemyAnim = enemyGraphics.GetComponent<Animator>();
     }
 
+    //this function will apply knockback to the enemy upon being hit by the player weapon projectile
+    // it will disable the movement and ability to attack of the enemy whilst stunned
     public void takeKnockBack(Transform bulletTransform, int projectileKnockBack)
     {
-        Vector2 hitDirection = (eTransform.position -  bulletTransform.position).normalized;
-        enemyMoveController.enabled = false;
+        Vector2 hitDirection = (enemyTransform.position -  bulletTransform.position).normalized;
+        aiPath.enabled = false;
+        enemyAttackCollider.enabled = false;
 
         if (enemyHealth.currentHealth > 0) 
         {
@@ -44,6 +48,7 @@ public class EnemyKnockBack : MonoBehaviour
             enemyAnim.SetBool("isHit", false);
         }
         eRb.velocity = Vector2.zero;
-        enemyMoveController.enabled = true;
+        aiPath.enabled = true;
+        enemyAttackCollider.enabled = true;
     }
 }

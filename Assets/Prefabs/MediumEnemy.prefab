@@ -67,7 +67,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.9692826
+  m_Radius: 8
 --- !u!114 &5757408426315195743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAIPath: {fileID: 3471388070691802946}
+  isBoss: 0
+  bgmController: {fileID: 0}
 --- !u!1 &4656770817308373052
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +94,6 @@ GameObject:
   - component: {fileID: 5839603714743733376}
   - component: {fileID: 6330056760747145218}
   - component: {fileID: 8820652561042341124}
-  - component: {fileID: 1214143462134191462}
   m_Layer: 0
   m_Name: EnemyAttackRegion
   m_TagString: Untagged
@@ -147,9 +148,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
-  m_Radius: 0.2334392
+  m_Radius: 1.12
 --- !u!114 &8820652561042341124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,19 +168,6 @@ MonoBehaviour:
   eTransform: {fileID: 2612129488785909463}
   enemyMoveController: {fileID: 3471388070691802946}
   enemySightRegion: {fileID: 9133057262566805864}
---- !u!114 &1214143462134191462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656770817308373052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513905e7633e8b047bd332ab26bbe716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAIPath: {fileID: 0}
 --- !u!1 &6004218983573001638
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1580658015, guid: 1a8c67bf76d721b4ca73ed811a0ae6ad, type: 3}
+  m_Sprite: {fileID: 1111377323, guid: 7692122c3fb4d51408e8bd9ae569510b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,7 +264,7 @@ Animator:
   m_GameObject: {fileID: 6004218983573001638}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24247075e8e3c964bae57c0a76b63512, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ffe2530eafd19f4badcee917a458b54, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -316,7 +304,6 @@ GameObject:
   - component: {fileID: 263752084213292776}
   - component: {fileID: 3461219401424515423}
   - component: {fileID: 4950335883903212578}
-  - component: {fileID: -7802125342115483156}
   m_Layer: 0
   m_Name: MediumEnemy
   m_TagString: Enemy
@@ -334,7 +321,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15, y: 3, z: -0.06911083}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5217990147816724935}
@@ -439,12 +426,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 6004218983573001638}
-  silverKey: {fileID: 0}
+  silverKey: {fileID: 1380595849278128952, guid: 833195741797c4c41b39da61045b34cb, type: 3}
   goldKey: {fileID: 0}
-  isMedium: 0
+  isMedium: 1
   isBoss: 0
   health: 5
+  enemyAttackCollider: {fileID: 6330056760747145218}
   currentHealth: 0
+  enemySFXScript: {fileID: 0}
 --- !u!114 &5129593783240913354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,10 +446,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f123098b7f1a744a4bd7a1997e6676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eTransform: {fileID: 2612129488785909463}
+  enemyTransform: {fileID: 2612129488785909463}
   eRb: {fileID: 263752084213292776}
-  enemyMoveController: {fileID: 3471388070691802946}
+  aiPath: {fileID: 3471388070691802946}
   enemyGraphics: {fileID: 6004218983573001638}
+  enemyAttackCollider: {fileID: 6330056760747145218}
 --- !u!50 &263752084213292776
 Rigidbody2D:
   serializedVersion: 4
@@ -520,9 +510,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
-  m_Radius: 0.21878743
+  m_Radius: 1.02
 --- !u!114 &4950335883903212578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,15 +527,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 6004218983573001638}
   aiPath: {fileID: 3471388070691802946}
---- !u!114 &-7802125342115483156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9133057262566805864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6d6a66757abd34db72c7e5724782cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

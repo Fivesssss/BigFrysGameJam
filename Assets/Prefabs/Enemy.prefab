@@ -67,7 +67,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.9692826
+  m_Radius: 5
 --- !u!114 &6090473886651567605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAIPath: {fileID: 6456434387981391932}
+  isBoss: 0
+  bgmController: {fileID: 0}
 --- !u!1 &6454793334144288580
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +227,9 @@ MonoBehaviour:
   isMedium: 0
   isBoss: 0
   health: 3
+  enemyAttackCollider: {fileID: 7619558277483527831}
   currentHealth: 0
+  enemySFXScript: {fileID: 0}
 --- !u!114 &6236324185083168232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f123098b7f1a744a4bd7a1997e6676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eTransform: {fileID: 5080876788593402850}
+  enemyTransform: {fileID: 5080876788593402850}
   eRb: {fileID: 256470495569798876}
-  enemyMoveController: {fileID: 6456434387981391932}
+  aiPath: {fileID: 6456434387981391932}
   enemyGraphics: {fileID: 7855318593321920699}
+  enemyAttackCollider: {fileID: 7619558277483527831}
 --- !u!50 &256470495569798876
 Rigidbody2D:
   serializedVersion: 4
@@ -303,7 +308,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21878743
+  m_Radius: 0.22
 --- !u!114 &847811116569491605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +509,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2334392
+  m_Radius: 0.3
 --- !u!114 &4184777320332104707
 MonoBehaviour:
   m_ObjectHideFlags: 0

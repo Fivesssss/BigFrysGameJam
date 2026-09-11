@@ -6,6 +6,8 @@ using TMPro;
 public class UIScript : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+
+    //These are all counters
     [SerializeField] private TextMeshProUGUI silverKeys;
     [SerializeField] private TextMeshProUGUI goldKeys;
     [SerializeField] private TextMeshProUGUI gemCounter;
@@ -32,6 +34,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
+    //this will inform the player that they have collected X amount of gems out of a total of Y required gems
     public IEnumerator showGemCounter()
     {
         gemCounter.gameObject.SetActive(true);
