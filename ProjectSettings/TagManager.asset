@@ -16,7 +16,7 @@ TagManager:
   - Obstacle
   - Water
   - UI
-  - 
+  - Ui Objects
   - 
   - 
   - 
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 4088729093
+    locked: 0
+  - name: Ui Objects
+    uniqueID: 658256047
     locked: 0
