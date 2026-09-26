@@ -14,4 +14,13 @@ public class MainMenuButtons : MonoBehaviour
     {
         Application.Quit();
     }
+    public void LoadMenu() 
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LoadHelp() 
+    {
+        SceneManager.LoadScene("Help Menu");
+    }
 }
